@@ -67,5 +67,6 @@ python pred.py
 ### Results
 We evaluate our model in open-access benchmark CUB on both ZSL and GZSL
 task. Accuracies along with the training are shown below.
+
  <img src="data/GZSL_epoch_cub_cn.png" width = "800" height = "500" alt="GSC" align=center />
 
