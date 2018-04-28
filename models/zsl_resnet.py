@@ -43,7 +43,7 @@ class AttriCNN(nn.Module):
 
 class AttriCNN1(nn.Module):
     def __init__(self, cnn, w_attr, num_attr=312, num_classes=200):
-        super(AttriCNN2, self).__init__()
+        super(AttriCNN1, self).__init__()
         self.cnn = nn.Sequential(*list(cnn.children())[:-1])
         self.feat_size = cnn.fc.in_features
 
@@ -63,7 +63,7 @@ class AttriCNN1(nn.Module):
 
 
 def attrWCNNg(num_attr=123, num_classes=50, superclass="animals"):
-    cnn = resnet50(pretrained=True)
+    cnn = resnet50(pretrained=False)
     w_attr = np.load("data/%s_attr.npy" % superclass)
     w_attr = torch.FloatTensor(w_attr)  # 312 * 150
     attCNN = AttriCNN(cnn=cnn, w_attr=w_attr, num_attr=num_attr, num_classes=num_classes)
@@ -71,7 +71,7 @@ def attrWCNNg(num_attr=123, num_classes=50, superclass="animals"):
 
 
 def attrWCNNg1(num_attr=123, num_classes=50, superclass="animals"):
-    cnn = resnet50(pretrained=True)
+    cnn = resnet50(pretrained=False)
     w_attr = np.load("data/%s_attr.npy" % superclass)
     w_attr = torch.FloatTensor(w_attr)  # 312 * 150
     attCNN = AttriCNN1(cnn=cnn, w_attr=w_attr, num_attr=num_attr, num_classes=num_classes)

@@ -146,21 +146,21 @@ def test(epoch, net):
         best_acc = acc
 
 
-epoch1 = 2
-if start_epoch < epoch1:
-    for param in net.parameters():
-        param.requires_grad = False
-    optim_params = list(net.fc0.parameters()) + list(net.fc1.parameters())
-    # optim_params = list(net.fc1.parameters())
-    for param in optim_params:
-        param.requires_grad = True
-    optimizer = optim.Adam(optim_params, weight_decay=beta)
-    for epoch in range(start_epoch, epoch1):
-        train(epoch, net, optimizer)
-        test(epoch, net)
-        log.write("\n")
-        log.flush()
-    start_epoch = epoch1
+# epoch1 = 2
+# if start_epoch < epoch1:
+#     for param in net.parameters():
+#         param.requires_grad = False
+#     optim_params = list(net.fc0.parameters()) + list(net.fc1.parameters())
+#     # optim_params = list(net.fc1.parameters())
+#     for param in optim_params:
+#         param.requires_grad = True
+#     optimizer = optim.Adam(optim_params, weight_decay=beta)
+#     for epoch in range(start_epoch, epoch1):
+#         train(epoch, net, optimizer)
+#         test(epoch, net)
+#         log.write("\n")
+#         log.flush()
+#     start_epoch = epoch1
 
 fc_params = list(map(id, net.fc2.parameters()))
 base_params = list(filter(lambda p: id(p) not in fc_params, net.parameters()))
