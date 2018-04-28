@@ -35,13 +35,13 @@
 
 ### Code Solution
 Take vehicle for example:
-1. Set dataset_dir, superclass etc.
+1. **Preprocessing**: Set dataset_dir, superclass etc. and dataUtils.py
 ```
 dataset_dir "ai_challenger_zsl2018_test_b_20180423"
 superclass = "vehicles"
 python utils/dataUtils.py
 ```
-2. train
+2. **Training**: Set a model and change related lines.
 ```
 GSC-Net: attrWCNNg (Default)
 criterion = nn.CrossEntropyLoss()
@@ -58,7 +58,7 @@ we simply choose the 3rd epoch checkpoint as our final submission model.
 GSC-Net often achieves high in the 3rd epoch.
 ABN can be stable enough in the first 20 epochs.
 
-3. prediction
+3. **Prediction**
 ```
 python pred.py
 ```
