@@ -1,6 +1,6 @@
 
-# AIChallenger2018_zsl
-[AIChallenger2018_zsl](https://challenger.ai/competition/zsl2018)
+#  [AIChallenger2018_zsl](https://challenger.ai/competition/zsl2018)
+## adcv Solution
 
 ### 赛题简介
 本竞赛由创新工场、北京大学王亦洲教授和复旦大学付彦伟教授联合举办。
