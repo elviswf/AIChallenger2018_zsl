@@ -41,8 +41,12 @@ dataset_dir "ai_challenger_zsl2018_test_b_20180423"
 superclass = "vehicles"
 python utils/dataUtils.py
 ```
+
 2. **Training**: Set a model and change related lines.
 ```
+1) python pretrain.py on seen classes to generate a base model
+
+2)
 GSC-Net: attrWCNNg (Default)
 criterion = nn.CrossEntropyLoss()
 

@@ -13,6 +13,25 @@ from torch.autograd import Variable
 from torchvision.models import resnet50
 
 
+def resnet50cnn(num_classes=40):
+    cnn = resnet50(pretrained=True)
+    cnn.fc = nn.Linear(2048, num_classes)
+    return cnn
+
+
+def resnet50pre(superclass="animals"):
+    # MODEL_SAVE_FILE = "cnn_%s.pt" % superclass
+    MODEL_SAVE_FILE = "cnn_%s_epoch5.pt" % superclass
+    checkpoint = torch.load("./checkpoints/" + MODEL_SAVE_FILE)
+    net = checkpoint["net"]
+    best_acc = checkpoint["acc"]
+    start_epoch = checkpoint["epoch"]
+    print(MODEL_SAVE_FILE)
+    print("start_epoch: %d" % start_epoch)
+    print("acc: %f" % best_acc)
+    return net
+
+
 class AttriCNN(nn.Module):
     def __init__(self, cnn, w_attr, num_attr=123, num_classes=50):
         super(AttriCNN, self).__init__()
@@ -63,7 +82,8 @@ class AttriCNN1(nn.Module):
 
 
 def attrWCNNg(num_attr=123, num_classes=50, superclass="animals"):
-    cnn = resnet50(pretrained=False)
+    # cnn = resnet50(pretrained=False)
+    cnn = resnet50pre(superclass)
     w_attr = np.load("data/%s_attr.npy" % superclass)
     w_attr = torch.FloatTensor(w_attr)  # 312 * 150
     attCNN = AttriCNN(cnn=cnn, w_attr=w_attr, num_attr=num_attr, num_classes=num_classes)
@@ -71,7 +91,8 @@ def attrWCNNg(num_attr=123, num_classes=50, superclass="animals"):
 
 
 def attrWCNNg1(num_attr=123, num_classes=50, superclass="animals"):
-    cnn = resnet50(pretrained=False)
+    # cnn = resnet50(pretrained=False)
+    cnn = resnet50pre(superclass)
     w_attr = np.load("data/%s_attr.npy" % superclass)
     w_attr = torch.FloatTensor(w_attr)  # 312 * 150
     attCNN = AttriCNN1(cnn=cnn, w_attr=w_attr, num_attr=num_attr, num_classes=num_classes)
